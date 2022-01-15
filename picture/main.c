@@ -19,7 +19,7 @@ int main() {
         SDL_Log("can not create a window, %s", SDL_GetError());
         return 1;
     }
-    //SDL_Delay(3000);// equal to sleep
+    SDL_Delay(3000);// equal to sleep
 
     SDL_Surface *screen = SDL_GetWindowSurface(win);// get the surface of the window
     SDL_Rect background = {0,0,Width,Height};// a struct position and size
