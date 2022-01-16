@@ -19,15 +19,21 @@ int main() {
         SDL_Log("can not create a window, %s", SDL_GetError());
         return 1;
     }
-    SDL_Delay(3000);// equal to sleep
+    //SDL_Delay(3000);// equal to sleep
 
     SDL_Surface *screen = SDL_GetWindowSurface(win);// get the surface of the window
     SDL_Rect background = {0,0,Width,Height};// a struct position and size
-    SDL_FillRect(screen,&background,0xff0000ff);//ARGB ,A is not transparent ,ff is complete
+    SDL_FillRect(screen,&background,0xffffffff);//ARGB ,A is not transparent ,ff is complete
     SDL_Rect small_color = {0,0,100,100};
     SDL_FillRect(screen,&small_color,0xff00ff00);
-    SDL_UpdateWindowSurface(win);
 
+    for ( int j = 0; j < 20; j++){
+        for ( int i = 0; i < 100; i++){
+            ((uint32_t* ) (screen->pixels))[Width * (50 + j) + i] = 0xffff0000;
+        }
+    }
+
+    SDL_UpdateWindowSurface(win);
     event_loop();
 
     SDL_DestroyWindow(win); // equal to free
